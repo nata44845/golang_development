@@ -28,6 +28,14 @@ func (r *Repository) Create(ctx context.Context, req CreateUserReq) (database.Us
 
 	create_time := time.Now()
 
+	u = database.User{
+		ID:        req.ID,
+		Username:  req.Username,
+		Password:  req.Password,
+		CreatedAt: create_time,
+		UpdatedAt: create_time,
+	}
+
 	query := `
 		INSERT INTO users (id, username, password, created_at, updated_at)
 		VALUES ($1, $2, $3, $4, $5)

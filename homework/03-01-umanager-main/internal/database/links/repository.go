@@ -51,7 +51,7 @@ func (r *Repository) FindByUserAndURL(ctx context.Context, link, userID string) 
 	var l database.Link
 	ctx, cancel := context.WithTimeout(ctx, r.timeout)
 	defer cancel()
-	result := r.db.Collection(collection).FindOne(ctx, bson.M{"url": link, "user_id": userID})
+	result := r.db.Collection(collection).FindOne(ctx, bson.M{"url": link, "userID": userID})
 	if err := result.Err(); err != nil {
 		return l, fmt.Errorf("mongo FindOne: %w", err)
 	}

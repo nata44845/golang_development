@@ -30,7 +30,7 @@ func runMain(ctx context.Context) error {
 	create, err := e.UsersRepository.Create(
 		ctx, users.CreateUserReq{
 			ID:       uuid.New(),
-			Username: "random",
+			Username: "nata",
 			Password: "password",
 		},
 	)
