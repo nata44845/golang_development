@@ -54,6 +54,8 @@ func runMain(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	fmt.Println(create, found, foundBy)
+	fmt.Println("create", create)
+	fmt.Println("found", found)
+	fmt.Println("foundBy", foundBy)
 	return nil
 }
