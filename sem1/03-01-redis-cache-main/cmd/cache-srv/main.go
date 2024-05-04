@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 	"os/signal"
 	"syscall"
 	"time"
@@ -35,7 +34,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	redisClient := redis.NewClient(&redis.Options{DB: 1})
+	redisClient := redis.NewClient(&redis.Options{DB: 1, Addr: ":6379"})
 	status := redisClient.Ping(ctx)
 	if err := status.Err(); err != nil {
 		log.Fatal(err)
@@ -58,9 +57,9 @@ func main() {
 	}
 
 	fmt.Println(byCommand)
-	os.Exit(0)
+	// os.Exit(0)
 
-	cachedRepository := commands.NewCacheRepository(redisClient)
+	cachedRepository := commands.NewCacheRepository(redisClient, commandsRepository)
 
 	if err := cachedRepository.AddCommand(
 		ctx, database.Command{

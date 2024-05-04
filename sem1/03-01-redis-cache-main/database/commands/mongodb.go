@@ -10,6 +10,7 @@ import (
 	"redis-cache/database"
 )
 
+// Проверка на соответствие структуры интерфейсу
 var _ Repository = (*mongoDbRepository)(nil)
 
 const collection = "commands"
@@ -30,6 +31,7 @@ func (m mongoDbRepository) AddCommand(ctx context.Context, command database.Comm
 }
 
 func (m mongoDbRepository) FindByCommand(ctx context.Context, command string) (database.Command, error) {
+	//database имя пакета
 	var cmd database.Command
 	result := m.db.Collection(collection).FindOne(ctx, bson.M{"command": command})
 	if err := result.Err(); err != nil {

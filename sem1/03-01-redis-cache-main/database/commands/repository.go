@@ -2,7 +2,7 @@ package commands
 
 import (
 	"context"
-
+	// Имя модуля/имя пакета
 	"redis-cache/database"
 )
 
