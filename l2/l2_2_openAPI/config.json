@@ -1,0 +1,9 @@
+{
+    "spec": "booksapi.yaml",
+    "lang": "go",
+    "output": "generated",
+    "additionalFlags": {
+        "server": true,
+        "client": true
+    }
+}

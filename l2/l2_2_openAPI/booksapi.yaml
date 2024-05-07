@@ -1,0 +1,104 @@
+openapi: 3.0.0
+info:
+	title: Библиотека API
+	version: 1.0.0
+	description: API для управления информацией о книгах в библиотеке.
+paths:
+	/books:
+		get:
+			summary: Получить список всех книг
+			responses:
+				'200':
+					description: Успешный ответ
+					content:
+						application/json:
+							schema:
+								type: array
+								items:
+									$ref: '#/components/schemas/Book'
+		post:
+			summary: Добавить новую книгу
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/Book'
+			responses:
+				'200':
+					description: Книга успешно добавлена
+					content:
+						application/json:
+							schema:
+								$ref: '#/components/schemas/Book'
+	/books/{id}:
+		get:
+			summary: Получить информацию о конкретной книге
+			parameters:
+			- name: id
+				in: path
+				required: true
+				description: ID книги
+				schema:
+					type: integer
+			responses:
+				'200':
+					description: Успешный ответ
+					content:
+						application/json:
+							schema:
+								$ref: '#/components/schemas/Book'
+		put:
+			summary: Обновить информацию о книге
+			parameters:
+			- name: id
+				in: path
+				required: true
+				description: ID книги
+				schema:
+					type: integer
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/Book'
+			responses:
+				'200':
+					description: Книга успешно обновлена
+					content:
+						application/json:
+							schema:
+								$ref: '#/components/schemas/Book'
+		delete:
+			summary: Удалить книгу
+			parameters:
+			- name: id
+				in: path
+				required: true
+				description: ID книги
+				schema:
+					type: integer
+			responses:
+				'200':
+					description: Книга успешно удалена
+					content:
+						application/json:
+							schema:
+								type: array
+								items:
+									$ref: '#/components/schemas/Book'
+components:
+	schemas:
+		Book:
+			type: object
+			properties:
+				id:
+					type: integer
+					description: Уникальный идентификатор книги
+				title:
+					type: string
+					description: Название книги
+				author:
+					type: string
+					description: Автор книги
